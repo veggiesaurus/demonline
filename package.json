@@ -1,0 +1,23 @@
+{
+  "name": "demonline",
+  "version": "0.0.1",
+  "description": "MEAN stack port of demonline for UCT Physics",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://veggiesaurus@bitbucket.org/veggiesaurus/demonline.git"
+  },
+  "author": "Angus Comrie",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/veggiesaurus/demonline#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "errorhandler": "^1.4.1",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.7",
+    "mongoose": "^4.4.7"
+  }
+}
