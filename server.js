@@ -3,15 +3,21 @@ var app = express();
 var errorhandler = require('errorhandler')
 var http = require('http');
 var path = require('path');
+var secrets = require('./config/secrets.json');
 var mongoose = require('mongoose');
 
 //database config
-var serverConfig = require('./config/general');
-mongoose.connect(process.env.MONGOLAB_URI || serverConfig.dbURL);
+mongoose.connect(process.env.MONGOLAB_URI || secrets.dbURL);
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true, limit: '2mb'}));
 app.use(bodyParser.json({ limit: '2mb' }));
+
+//auth
+var passport = require('passport');
+require('./config/passportLocal')(passport);
+app.use(passport.initialize());
+
 
 // Add headers
 app.use(function (req, res, next) {
@@ -42,7 +48,14 @@ if ('development' == app.get('env')) {
 	app.use(errorhandler());
 }
 
-require('./app/routes.js')(app);
+require('./app/routes.js')(app, passport);
+app.use(express.static('public'));
+
+//single page app (routing handled on client side [angular-route.js]
+app.get('*', function (req, res) {
+	res.sendFile('index.html', { root: path.join(__dirname, '/public') });
+});
+
 
 http.createServer(app).listen(app.get('port'), function () {
 	console.log('Express server listening on port ' + app.get('port'));
