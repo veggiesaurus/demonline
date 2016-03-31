@@ -22,7 +22,6 @@
     <Compile Include="app\api\apiAuth.js" />
     <Compile Include="app\api\apiCategory.js" />
     <Compile Include="app\api\apiDemoEntry.js" />
-    <Compile Include="config\passportLocal.js" />
     <Compile Include="app\models\category.js" />
     <Compile Include="app\models\demoEntry.js" />
     <Compile Include="app\routes.js" />

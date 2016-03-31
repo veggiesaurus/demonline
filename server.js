@@ -15,7 +15,6 @@ app.use(bodyParser.json({ limit: '2mb' }));
 
 //auth
 var passport = require('passport');
-require('./config/passportLocal')(passport);
 app.use(passport.initialize());
 
 
